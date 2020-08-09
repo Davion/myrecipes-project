@@ -9,16 +9,14 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Ingredient {
+public class CookStep {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
-	private String icon;
 	private String description;
 	
 	private Recipe recipe;
-	
 
 }
