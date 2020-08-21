@@ -17,6 +17,5 @@ public class CookStep {
 	private String name;
 	private String description;
 	
-	private Recipe recipe;
 
 }

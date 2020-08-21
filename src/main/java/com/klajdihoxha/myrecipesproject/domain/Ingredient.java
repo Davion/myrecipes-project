@@ -1,5 +1,7 @@
 package com.klajdihoxha.myrecipesproject.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +20,7 @@ public class Ingredient {
 	private String icon;
 	private String description;
 	
-	private Recipe recipe;
+	private List<Recipe> recipes;
 	
 
 }
