@@ -28,7 +28,7 @@ public class User {
 	private Date createdAt;
 	
 	@OneToMany(targetEntity = Recipe.class)
-	private List<Recipe> recipes;
+	private Recipe recipe;
 	
 	@PrePersist
 	void createdAt() {
