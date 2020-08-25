@@ -9,11 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "users")
 public class User {
 	
 	@Id
@@ -27,8 +29,8 @@ public class User {
 	
 	private Date createdAt;
 	
-	@OneToMany(targetEntity = Recipe.class)
-	private Recipe recipe;
+	@OneToMany(mappedBy= "user")
+	private List<Recipe> recipes;
 	
 	@PrePersist
 	void createdAt() {

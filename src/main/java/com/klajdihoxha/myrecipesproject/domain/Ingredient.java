@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import lombok.Data;
 
@@ -20,6 +21,7 @@ public class Ingredient {
 	private String icon;
 	private String description;
 	
+	@ManyToMany(mappedBy = "ingredients")
 	private List<Recipe> recipes;
 	
 

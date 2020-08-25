@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 
@@ -24,10 +25,13 @@ public class Recipe {
 	
 	private Date createdAt;
 	
-	@ManyToMany(targetEntity = Ingredient.class)
-	List<Ingredient> ingredients;
-	@OneToMany(targetEntity = CookStep.class)
-	List<CookStep> cookSteps;
+	@ManyToMany()
+	private List<Ingredient> ingredients;
+	@OneToMany(mappedBy = "recipe")
+	private List<CookStep> cookSteps;
+	
+	@ManyToOne
+	private User user;
 	
 	@PrePersist
 	void createdAt() {
