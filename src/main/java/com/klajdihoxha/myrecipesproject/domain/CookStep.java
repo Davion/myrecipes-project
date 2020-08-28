@@ -1,6 +1,7 @@
 package com.klajdihoxha.myrecipesproject.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +19,6 @@ public class CookStep {
 	private String name;
 	private String description;
 	
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Recipe recipe;
 }

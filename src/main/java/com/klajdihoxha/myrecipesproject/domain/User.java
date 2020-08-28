@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,11 +12,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "users")
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "firstName")
 public class User {
 	
 	@Id
@@ -29,7 +36,7 @@ public class User {
 	
 	private Date createdAt;
 	
-	@OneToMany(mappedBy= "user")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy= "user")
 	private List<Recipe> recipes;
 	
 	@PrePersist
