@@ -22,7 +22,7 @@ import lombok.Data;
 @Table(name = "users")
 @JsonIdentityInfo(
 		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "firstName")
+		  property = "id")
 public class User {
 	
 	@Id

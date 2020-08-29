@@ -22,7 +22,7 @@ import lombok.Data;
 @Entity
 @JsonIdentityInfo(
 		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "name")
+		  property = "id")
 public class Recipe {
 	
 	@Id
