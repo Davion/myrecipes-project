@@ -16,7 +16,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Ingredient {
+public class Ingredient extends AuditModel{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

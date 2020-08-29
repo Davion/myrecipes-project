@@ -23,7 +23,7 @@ import lombok.Data;
 @JsonIdentityInfo(
 		  generator = ObjectIdGenerators.PropertyGenerator.class, 
 		  property = "id")
-public class User {
+public class User extends AuditModel{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,16 +34,7 @@ public class User {
 	private String password;
 	private Date birthday;
 	
-	private Date createdAt;
-	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy= "user")
 	private List<Recipe> recipes;
 	
-	@PrePersist
-	void createdAt() {
-		this.createdAt = new Date();
-	}
-
-	
-
 }

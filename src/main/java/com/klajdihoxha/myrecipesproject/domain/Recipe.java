@@ -23,14 +23,13 @@ import lombok.Data;
 @JsonIdentityInfo(
 		  generator = ObjectIdGenerators.PropertyGenerator.class, 
 		  property = "id")
-public class Recipe {
+public class Recipe extends AuditModel{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
 	
-	private Date createdAt;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	private List<Ingredient> ingredients;
@@ -40,8 +39,4 @@ public class Recipe {
 	@ManyToOne()
 	private User user;
 	
-	@PrePersist
-	void createdAt() {
-		this.createdAt = new Date();
-	}
 }
