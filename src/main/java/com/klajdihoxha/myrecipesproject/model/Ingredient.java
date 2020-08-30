@@ -1,4 +1,4 @@
-package com.klajdihoxha.myrecipesproject.models;
+package com.klajdihoxha.myrecipesproject.model;
 
 import java.util.List;
 

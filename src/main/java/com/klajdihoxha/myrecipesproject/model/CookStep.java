@@ -1,4 +1,4 @@
-package com.klajdihoxha.myrecipesproject.models;
+package com.klajdihoxha.myrecipesproject.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
