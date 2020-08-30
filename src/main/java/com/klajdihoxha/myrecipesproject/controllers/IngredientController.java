@@ -1,4 +1,4 @@
-package com.klajdihoxha.myrecipesproject.controller;
+package com.klajdihoxha.myrecipesproject.controllers;
 
 
 import java.util.List;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.klajdihoxha.myrecipesproject.data.IngredientRepository;
-import com.klajdihoxha.myrecipesproject.domain.Ingredient;
+import com.klajdihoxha.myrecipesproject.models.Ingredient;
+import com.klajdihoxha.myrecipesproject.repositories.IngredientRepository;
 
 @RestController
 @RequestMapping("/ingredients")

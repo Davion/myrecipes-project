@@ -1,4 +1,4 @@
-package com.klajdihoxha.myrecipesproject.domain;
+package com.klajdihoxha.myrecipesproject.models;
 
 import java.io.Serializable;
 import java.util.Date;
