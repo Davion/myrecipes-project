@@ -1,6 +1,6 @@
 package com.klajdihoxha.myrecipesproject.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,12 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
 public class Ingredient extends AuditModel{
 	
@@ -26,7 +25,7 @@ public class Ingredient extends AuditModel{
 	private String description;
 	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "ingredients")
-	private List<Recipe> recipes;
+	private Set<Recipe> recipes;
 	
 
 }

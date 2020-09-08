@@ -7,5 +7,5 @@ import com.klajdihoxha.myrecipesproject.model.Recipe;
 
 @Repository
 public interface RecipeRepository extends JpaRepository<Recipe, Long>{
-
+    Recipe findByName(String name);
 }

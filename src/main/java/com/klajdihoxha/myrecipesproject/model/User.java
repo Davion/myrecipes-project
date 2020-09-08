@@ -1,7 +1,7 @@
 package com.klajdihoxha.myrecipesproject.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,17 +9,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 @JsonIdentityInfo(
 		  generator = ObjectIdGenerators.PropertyGenerator.class, 
 		  property = "id")
@@ -33,8 +34,17 @@ public class User extends AuditModel{
 	private String email;
 	private String password;
 	private Date birthday;
+	private String mobileNumber;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy= "user")
-	private List<Recipe> recipes;
+	private Set<Recipe> recipes;
+
+	@OneToMany
+	private Set<Role> roles;
+
+
+	public String getFullName() {
+		return firstName != null ? firstName.concat(" ").concat(lastName) : "";
+	}
 	
 }

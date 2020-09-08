@@ -2,6 +2,7 @@ package com.klajdihoxha.myrecipesproject.controller;
 
 import java.util.List;
 
+import com.klajdihoxha.myrecipesproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,58 +23,34 @@ import com.klajdihoxha.myrecipesproject.repository.UserRepository;
 public class UserController {
 	
 	@Autowired
-	private UserRepository userRepo;
+	private UserService userService;
 	
 	@GetMapping()
 	public List<User> getUsers(){
-		return userRepo.findAll();
+		return userService.getUsers();
 	}
 	
 	@GetMapping("/{userId}")
 	public User getUser(@PathVariable Long userId){
-		return userRepo.findById(userId).get();
+		return userService.findUserById(userId);
 	}
 	
 	@PostMapping(consumes = "application/json")
 	@ResponseStatus(HttpStatus.CREATED)
 	public User createUser(@RequestBody User user) {
-		return userRepo.save(user);
+		return userService.signup(user);
 	}
 	
 	@PutMapping(path = "/{userId}", consumes = "application/json")
 	public User updateUser(@PathVariable Long userId, 
 								@RequestBody User updatedUser) {
 		
-		User user = userRepo.findById(userId).get();
-		
-		if(updatedUser.getFirstName() != null) {
-			user.setFirstName(updatedUser.getFirstName());
-		}
-		if(updatedUser.getLastName() != null) {
-			user.setLastName(updatedUser.getLastName());
-		}
-		if(updatedUser.getEmail() != null) {
-			user.setEmail(updatedUser.getEmail());
-		}
-		if(updatedUser.getPassword() != null) {
-			user.setPassword(updatedUser.getPassword());
-		}
-		if(updatedUser.getBirthday() != null) {
-			user.setBirthday(updatedUser.getBirthday());
-		}
-		
-		return userRepo.save(user);		
+		return userService.updateProfile(userId, updatedUser);
 	}
 	
 	@DeleteMapping("/{userId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteUser(@PathVariable Long userId) {
-		
-		try {
-			userRepo.deleteById(userId);
-		}catch (Exception e) {
-			// TODO: handle exception
-		}
-		
+		userService.deleteUser(userId);
 	}
 }

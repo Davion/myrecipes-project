@@ -1,5 +1,19 @@
 package com.klajdihoxha.myrecipesproject.service;
 
-public class IngredientService {
+import com.klajdihoxha.myrecipesproject.model.Ingredient;
+
+import java.util.List;
+
+public interface IngredientService {
+
+    Ingredient createIngredient(Ingredient ingredient);
+
+    List<Ingredient> getIngredients();
+    Ingredient findIngredientById(Long ingredientId);
+    Ingredient findIngredientByName(String ingredientName);
+
+    Ingredient updateIngredient(Long ingredientId, Ingredient ingredient);
+
+    void deleteIngredient(Long ingredientId);
 
 }

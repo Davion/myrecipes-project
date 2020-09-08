@@ -7,5 +7,5 @@ import com.klajdihoxha.myrecipesproject.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
-
+    User findByEmail(String email);
 }

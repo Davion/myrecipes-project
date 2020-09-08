@@ -1,7 +1,6 @@
 package com.klajdihoxha.myrecipesproject.model;
 
-import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,15 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.PrePersist;
+
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @JsonIdentityInfo(
 		  generator = ObjectIdGenerators.PropertyGenerator.class, 
@@ -32,11 +32,8 @@ public class Recipe extends AuditModel{
 	
 	
 	@ManyToMany(fetch = FetchType.LAZY)
-	private List<Ingredient> ingredients;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "recipe")
-	private List<CookStep> cookSteps;
+	private Set<Ingredient> ingredients;
 	
 	@ManyToOne()
 	private User user;
-	
 }
