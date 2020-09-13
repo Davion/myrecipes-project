@@ -11,8 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,9 +20,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "USERS")
-@JsonIdentityInfo(
-		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "id")
+//@JsonIdentityInfo(
+//		  generator = ObjectIdGenerators.IntSequenceGenerator.class,
+//		  property = "@id")
 public class User extends AuditModel{
 	
 	@Id
@@ -37,6 +36,7 @@ public class User extends AuditModel{
 	private String mobileNumber;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy= "user")
+	@JsonBackReference
 	private Set<Recipe> recipes;
 
 	@OneToMany

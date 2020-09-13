@@ -25,6 +25,11 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    public List<Recipe> getRecipesByUser(Long userId) {
+        return recipeRepo.findAllByUser_Id(userId);
+    }
+
+    @Override
     public Recipe findRecipeById(Long recipeId) {
         return recipeRepo.findById(recipeId).get();
     }

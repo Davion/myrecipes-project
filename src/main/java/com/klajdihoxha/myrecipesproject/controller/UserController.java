@@ -1,7 +1,11 @@
 package com.klajdihoxha.myrecipesproject.controller;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import com.klajdihoxha.myrecipesproject.model.Recipe;
+import com.klajdihoxha.myrecipesproject.service.RecipeService;
 import com.klajdihoxha.myrecipesproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +28,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private RecipeService recipeService;
 	
 	@GetMapping()
 	public List<User> getUsers(){
@@ -33,6 +40,11 @@ public class UserController {
 	@GetMapping("/{userId}")
 	public User getUser(@PathVariable Long userId){
 		return userService.findUserById(userId);
+	}
+
+	@GetMapping("/{userId}/recipes")
+	public List<Recipe> getUserRecipes(@PathVariable Long userId){
+		return recipeService.getRecipesByUser(userId);
 	}
 	
 	@PostMapping(consumes = "application/json")
