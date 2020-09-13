@@ -2,6 +2,8 @@ package com.klajdihoxha.myrecipesproject.controller;
 
 import java.util.List;
 
+import com.klajdihoxha.myrecipesproject.model.Ingredient;
+import com.klajdihoxha.myrecipesproject.service.IngredientService;
 import com.klajdihoxha.myrecipesproject.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,9 @@ public class RecipeController {
 	
 	@Autowired
 	private RecipeService recipeService;
+
+	@Autowired
+	private IngredientService ingredientService;
 	
 	@GetMapping()
 	public List<Recipe> getRecipes(){
@@ -25,6 +30,11 @@ public class RecipeController {
 	@GetMapping("/{recipeId}")
 	public Recipe getRecipe(@PathVariable Long recipeId){
 		return recipeService.findRecipeById(recipeId);
+	}
+
+	@GetMapping("/{recipeId}/ingredients")
+	public List<Ingredient> getRecipeIngredients(@PathVariable Long recipeId){
+		return ingredientService.getIngredientsByRecipe(recipeId);
 	}
 	
 	@PostMapping(consumes = "application/json")

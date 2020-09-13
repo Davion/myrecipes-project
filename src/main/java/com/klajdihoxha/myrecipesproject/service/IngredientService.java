@@ -9,6 +9,7 @@ public interface IngredientService {
     Ingredient createIngredient(Ingredient ingredient);
 
     List<Ingredient> getIngredients();
+    List<Ingredient> getIngredientsByRecipe(Long recipeId);
     Ingredient findIngredientById(Long ingredientId);
     Ingredient findIngredientByName(String ingredientName);
 
